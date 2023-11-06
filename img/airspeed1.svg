@@ -1,0 +1,70 @@
+<svg   width="250" height="250"
+xmlns="http://www.w3.org/2000/svg" 
+xmlns:xlink="http://www.w3.org/1999/xlink"> 
+<defs>
+    <mask id="myMask" height="512" width="512">
+	    <g><image xlink:href="resources/maska1.jpg" height="512" width="512"/> </g>
+    </mask>
+ </defs> 
+<g  transform="scale(0.45)" mask="url(#myMask)">   
+	<g id="aircard">
+		<image href="resources/aircard.png" height="512" width="512"/> 
+	</g>
+	<g ><image href="resources/airspeed.png" height="512" width="512"/> </g>
+	<g id="as_needle">
+		<image href="resources/needle.png" height="512" width="512"/> 
+	</g>	
+	<g ><image href="resources/airknobshadow.png" x="31" y="400" height="85" width="85"/> </g>
+	<g ><image href="resources/airknob.png" x="31" y="400" height="85" width="85"/> </g>
+</g>
+<script type="text/javascript">
+	var dataRefS = {
+		drefs: ["sim/cockpit2/gauges/indicators/airspeed_kts_pilot",
+				"sim/aircraft/view/acf_asi_kts"
+				],
+		vals:[0,0]
+			  }
+	document.dataref = function() {	
+		return dataRefS.drefs;
+	};
+	document.set = function(sp,degrees) {
+		var val = angle(sp);
+		as_needle.setAttribute('transform','rotate('+val+',256,256)');
+		as_card.setAttribute("transform","rotate("+degrees+",256,256)");
+	};
+	
+	document.sendDataRef = function() {};
+	
+	document.setDref = function(dref,val){
+		var i = dataRefS.drefs.indexOf(dref);
+		if (i == -1) return;
+		dataRefS.vals[i] = val;
+		document.set(dataRefS.vals[0],dataRefS.vals[1]);
+	};
+	var card=0;
+	var as_needle = document.getElementById('as_needle');
+	var as_card = document.getElementById('aircard');
+	
+	
+	var angle = function(sp){
+		var speed = Math.max(sp,0);
+		speed = Math.min(speed,220);
+		if (speed >= 160) return (266+(speed-160)*1.3);
+		if (speed >= 120) return (205+(speed-120)*1.525);
+		if (speed >= 100) return (162+(speed-100)*2.15);
+		if (speed >= 70) return (92+(speed-70)*2.29);
+		if (speed >= 40) return (31+(speed-40)*2.033);
+		return (speed*0.775);
+	}
+	var new_cali = function(degrees) {
+		as_card.setAttribute("transform","rotate("+degrees+",256,256)");
+	}
+
+	 var new_knob = function(value) {
+		card += value;
+		card = (card > 48)?49:card;
+		card = ((card+135) > 0)?card:-135;
+		as_card.setAttribute("transform","rotate("+card+",256,256)"); 
+	}
+</script>
+</svg>

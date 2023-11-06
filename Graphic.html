@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type"  charset=utf-8">
+		<title>АнСат концепция</title>
+		<link rel="stylesheet" href="ansat.css">  
+		<script src="dygraph.min.js"></script>
+	</head>
+    <body id="body" >
+		<style>
+		    input.TLE{margin-top:20px;margin-left:20px;margin-right:20px; width: 90%; height:60px;align:center;}
+	        input.text{margin-top:20px;margin-left:20px;}
+			p {margin-left:20px}
+			#gr1 {  float: left; margin-top: 0%;}
+			#gr2 {  float: left; margin-left: 5%; margin-top: 0%;}
+			#gr3 {  float: left; margin-left: 3%; margin-top: 0%;}
+		</style>
+		<div id='d10' class='hu wl pa '></div> 
+		<div id='d1' class='hu wl m '></div> 
+		<div id='d11' class='hhu wl m'></div> 
+		<div id='d2' class='hu wc m'><h1 align="center">Исследование уравнений Кеплера</h1></div> 
+		<div id='d210' class='hhu wc m'></div> 
+		<div id='d21' class='hhum wc m'></div> 
+		<div id='d30' class='hu wr m'></div>
+		<div id='d3' class='hu wr m'></div>
+		<div id='d31' class='hhu wr m'></div>
+		<div id='d4' class='hc wl m' style="padding-left:10px">
+			<br/> Загрузка TLE
+			<input type="file" id="TLE" onchange="onchange1()"><br/><br/>
+			<br>эксцентриситет
+			<input type="text" id="ep" name="ep" placeholder="эксцентриситет" value="0.1"><br/><br/>
+			среднее движение
+		    <input type="text" id="vp" name="vp" placeholder="среднее движение" value="15">
+		    <br/><br/>точность<br>
+		    <input type="text" id="toch" class="toch" name="toch" placeholder="точность"  value="0.0001">
+		    <br/><br/>
+		    количество точек
+		    <input type="text" id="kt" class="kt" name="kt" placeholder="количество точек" value="360">
+			<br/><br/>
+			<input type="button" onclick="on()" value="Построить">
+		</div> 
+		<div id='d5' class='hc wc m'>
+			   
+<!--
+			<p>TLE</p>
+			<input name="TLE" type="text" class="TLE"><br/><br/>
+			<br><br>
+-->
+		<div id="gr1">
+			<p>График: Истинная аномалия от средней аномалии<br><br>синий - уравнение Кеплера<br>зеленый - равенство долей площадей</p>
+			<div id="graphic1"></div>
+		</div>
+		<div id="gr2">
+			<p>График: Разница долей площадей T-M в процентах от средней аномалии<br><br>синий - уравнение Кеплера<br>зеленый - равенство долей площадей </p>
+			<div id="graphic2"></div>
+		</div>
+		<div id="gr3">
+			<p>График: Количество итераций от средней аномалии<br><br>синий - уравнение Кеплера<br>зеленый - равенство долей площадей </p>
+			<div id="graphic3"></div>
+		</div>
+
+		<div id="qwe">
+			<img src="Рисунок3.png" id="im1" >
+			<img src="Рисунок1.png" >
+		</div>
+
+		</div> 
+		<div id='d6' class='hc wr m'></div>  
+		<div id='d7' class='hd wl m'></div> 
+		<div id='d8' class='hd wc m'></div> 
+		<div id='d9' class='hd wr m'></div> 
+		<div id='d0' style='display:none'></div>
+		<script src="tle.js"></script>
+		
+	 </body>
+</html>
