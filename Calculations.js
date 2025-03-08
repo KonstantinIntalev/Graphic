@@ -285,8 +285,6 @@ function onchange1(){
         //optionsG.ylabel='Истинная аномалия'
         let graph1 = new Dygraph(elG, dataG, optionsG);
     
-    //console.log(sr)
-    
     ky = 'rasSd'
     let elG2 = document.getElementById("graphic2");
     let dataG2 = [];
